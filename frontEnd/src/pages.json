@@ -1,0 +1,151 @@
+{
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+		}
+	},
+	"pages": [ 
+		{
+			"path": "pages/travel/index",
+			"style": {
+				"navigationBarTitleText": "游记"
+				
+			}
+		},
+		{
+			"path": "pages/videoPlay/index",
+			"style": {
+				"navigationBarTitleText": "视频播放",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#000000",
+				"backgroundColor": "#000000"
+			}
+		},
+		{
+			"path": "pages/matting/index",
+			"style": {
+				"navigationBarTitleText": "视频同款生成",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#4cca78",
+				"backgroundColor": "#4cca78"
+			}
+			
+		},
+		{
+			"path": "pages/editing/index",
+			"style": {
+				"navigationBarTitleText": "视频剪辑串编",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#4cca78",
+				"backgroundColor": "#4cca78"
+			}
+		},
+		{
+			"path": "pages/aiEditing/index",
+			"style": {
+				"navigationBarTitleText": "AI融合剪辑",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#4cca78",
+				"backgroundColor": "#4cca78"
+			}
+		},
+		{
+			"path": "pages/chooseStyle/index",
+			"style": {
+				"navigationBarTitleText": "视频横纵选择",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#4cca78",
+				"backgroundColor": "#4cca78"
+			}
+		},
+		{
+			"path": "pages/matting/takeVideo",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/chooseTemp/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#000000",
+				"backgroundColor": "#000000"
+			}
+		},
+		
+		{
+			"path": "pages/videoPlay/videoPreview",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#000000",
+				"backgroundColor": "#000000",
+				"navigationStyle": "custom"
+			}
+		},
+		
+		{
+			"path": "pages/saveStatus/index",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#F9F9F9",
+				"backgroundColor": "#F9F9F9"
+				
+			}
+		},
+		{
+			"path": "pages/chooseVideos/index",
+			"style": {
+				"navigationBarTitleText": "视频上传",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#4cca78",
+				"backgroundColor": "#4cca78"
+				
+		
+			}
+		},
+		{
+			"path": "pages/payMoney/index",
+			"style": {
+				"navigationBarTitleText": "订单",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#4cca78",
+				"backgroundColor": "#4cca78"
+				
+		
+			}
+		},
+		{
+			"path": "pages/privacyContent/index",
+			"style": {
+				"navigationBarTitleText": "爱游记小程序隐私保护指引",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#4cca78",
+				"backgroundColor": "#4cca78"
+				
+			}
+		},
+		{
+			"path": "pages/myVideo/index",
+			"style": {
+				"navigationBarTitleText": "我的视频",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#4cca78",
+				"backgroundColor": "#4cca78"
+				
+		
+			}
+		}
+		
+
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#ffffff"
+		
+	}
+}
