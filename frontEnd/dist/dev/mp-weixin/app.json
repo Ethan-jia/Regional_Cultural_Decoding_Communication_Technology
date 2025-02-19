@@ -1,0 +1,26 @@
+{
+  "pages": [
+    "pages/travel/index",
+    "pages/videoPlay/index",
+    "pages/matting/index",
+    "pages/editing/index",
+    "pages/aiEditing/index",
+    "pages/chooseStyle/index",
+    "pages/matting/takeVideo",
+    "pages/chooseTemp/index",
+    "pages/videoPlay/videoPreview",
+    "pages/saveStatus/index",
+    "pages/chooseVideos/index",
+    "pages/payMoney/index",
+    "pages/privacyContent/index",
+    "pages/myVideo/index"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#ffffff"
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {}
+}

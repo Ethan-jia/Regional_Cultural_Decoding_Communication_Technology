@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#000000",
+  "backgroundColor": "#000000",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "uni-popup": "/node-modules/@dcloudio/uni-ui/lib/uni-popup/uni-popup"
+  }
+}

@@ -1,0 +1,1 @@
+<view class="video-play"><view class="video-wrap"><video class="video" src="{{url}}" object-fit="{{mode}}" autoplay="{{true}}"></video><block wx:if="{{status==0||status==2}}"><button data-event-opts="{{[['tap',[['backHome',['$event']]]]]}}" class="btn" bindtap="__e"><text>返 回</text></button></block></view></view>

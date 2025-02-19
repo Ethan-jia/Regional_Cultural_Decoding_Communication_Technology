@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "视频同款生成",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#4cca78",
+  "backgroundColor": "#4cca78",
+  "usingComponents": {
+    "uni-popup": "/node-modules/@dcloudio/uni-ui/lib/uni-popup/uni-popup"
+  }
+}
