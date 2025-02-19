@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爱游记</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.min.css' %}">
+    <style>
+        .account {
+            width: 400px;
+            height: 300px;
+            border: 1px solid gray;
+            margin: 100px auto;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px gray; /*上下 左右 程度 颜色*/
+        }
+
+        .account h2 {
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="account">
+    <h2>用户登录</h2>
+    <form method="post" action="/login/">
+         {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputEmail1">用户名</label>
+            <input type="text" name="user" class="form-control" id="exampleInputEmail1" placeholder="用户名">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">密码</label>
+            <input type="password" name="pwd" class="form-control" id="exampleInputPassword1" placeholder="密码">
+        </div>
+        <input type="submit" value="登 录" class="btn btn-primary">
+    </form>
+</div>
+</body>
+</html>

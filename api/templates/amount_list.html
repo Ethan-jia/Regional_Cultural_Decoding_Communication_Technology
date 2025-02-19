@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+    <div class="panel panel-default" style="margin-top: 10px">
+        <div class="panel-heading">
+            <h3 class="panel-title">价格列表</h3>
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>商品名称</th>
+                <th>商品价格</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for obj in queryset %}
+                <tr>
+                    <td>{{ obj.id }}</td>
+                    <td>{{ obj.amount_name }}</td>
+                    <td>{{ obj.amount_price }} 元</td>
+                    <td>
+                        <a href="/amount/edit/{{ obj.id }}/" class="btn btn-primary btn-xs">编辑</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <table class="layui-table" id="demo" lay-filter="test"></table>
+    <script type="text/html" id="barDemo">
+      <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+      <a class="layui-btn layui-btn-xs" lay-event="more">更多 <i class="layui-icon layui-icon-down"></i></a>
+    </script>
+{% endblock %}

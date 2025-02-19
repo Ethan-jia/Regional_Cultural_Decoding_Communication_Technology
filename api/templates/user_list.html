@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+
+
+
+{% block content %}
+    <div class="clearfix">
+        <div style="float: right;width: 200px">
+            <form method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="q" value="{{ search_data }}"
+                           placeholder="Search for...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="panel panel-default" style="margin-top: 10px">
+        <div class="panel-heading">
+            <h3 class="panel-title">用户列表</h3>
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>昵称</th>
+                <th>openId</th>
+                <th>视频条数</th>
+                <th>支付金额</th>
+                <th>创建时间</th>
+                <th>最近操作时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for obj in queryset %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ obj.nickname }}</td>
+                    <td>{{ obj.openid }}</td>
+                    <td>{{ obj.video_num }}</td>
+                    <td>{{ obj.pay_num }}</td>
+                    <td>{{ obj.insert_time|date:"Y-m-d H:i:s" }}</td>
+                    <td>{{ obj.update_time|date:"Y-m-d H:i:s" }}</td>
+                    <td>
+                        <a href="/video/list/{{ obj.openid }}/" class="btn btn-primary btn-xs">详情</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <ul class="pagination" style="margin-top: 0px">
+        {{ page_string }}
+    </ul>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+        $(function () {
+            // 页面框架加载完成之后代码自动执行
+            initLine();
+        })
+
+        /**
+         * 初始化折线图
+         */
+        function initLine() {
+            var myChart = echarts.init(document.getElementById('chart1'));
+            var option = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: []
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: []
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLabel:{
+                        formatter:'{value}%'
+                    }
+                },
+                series: []
+            };
+
+            $.ajax({
+                url: '/user/line/',
+                type: "get",
+                dataType: "JSON",
+                success: function (res) {
+                    if (res.status) {
+                        option.legend.data = res.data.legend;
+                        option.xAxis.data = res.data.x_axis;
+                        option.series = res.data.series_list;
+                        myChart.setOption(option);
+                    }
+                }
+            })
+        }
+</script>
+{% endblock %}

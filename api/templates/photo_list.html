@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+
+
+
+<div class="panel panel-default" style="margin-top: 10px">
+
+    <form style="display:none" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input id="choice1" name="photo" type="file" >
+        <button id="upload1" type="submit">上传图片</button>
+    </form>
+
+
+    <div class="panel-heading">
+        <h3 class="panel-title">轮播图列表
+            <button id="choice" class="btn btn-primary btn-xs">选择图片</button>
+            <button id="upload" class="btn btn-primary btn-xs">点击上传</button>
+        </h3>
+
+    </div>
+
+    <table class="table table-hover">
+
+        <thead style="table-layout:fixed">
+        <tr>
+            <th>ID</th>
+            <th>图片名称</th>
+            <th>图片显示</th>
+            <th>是否隐藏</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for obj in queryset %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ obj.photo_name }}</td>
+            <td>
+                <img src="{{ obj.photo_url }}" style="width:200px">
+            </td>
+            <td>
+                {% if obj.is_hide %}
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                {% else %}
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                {% endif %}
+            </td>
+            <td>
+                <a href="/photo/delete/{{ obj.photo_name }}/" class="btn btn-danger btn-xs">删除</a>
+                <a href="/photo/hide/{{ obj.photo_name }}/" class="btn btn-warning btn-xs">
+                    {% if obj.is_hide %}
+                    取消隐藏
+                    {% else %}
+                    隐藏
+                    {% endif %}
+                </a>
+                <a href="/photo/goto/{{ obj.photo_name }}/" class="btn btn-success btn-xs">跳转</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+    $("#choice").click(function(){
+        $("#choice1").click()
+    });
+
+    $("#upload").click(function(){
+        $("#upload1").click()
+    });
+
+</script>
+{% endblock %}

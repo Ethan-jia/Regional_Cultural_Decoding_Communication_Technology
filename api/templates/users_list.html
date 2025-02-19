@@ -1,0 +1,160 @@
+{% extends "layout.html" %}
+
+
+
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">用户图表 &nbsp;&nbsp;&nbsp;&nbsp;
+                {% if query_type == 'year' %}
+                当前查看时间：{{query_year}}年
+                {% elif query_type == 'month' %}
+                当前查看时间：{{query_year}}年{{query_month}}月
+                {% else %}
+                当前查看时间：{{query_year}}年{{query_month}}月{{query_day}}日
+                {% endif %}
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">按年统计<span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        {% for year in year_list %}
+                        <li><a href="?query_type=year&query_year={{year}}">{{year}}年</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">按月统计<span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        {% for month in month_list %}
+                        <li><a href="?query_type=month&query_year={{query_year}}&query_month={{month}}">{{month}}月</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">按日统计<span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        {% for day in day_list %}
+                        <li><a href="?query_type=day&query_year={{query_year}}&query_month={{query_month}}&query_day={{day}}">{{day}}日</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <table class="table">
+            <div id="chart1" style="width: 100%;height:400px;"></div>
+        </table>
+    </div>
+
+    <div class="panel panel-default" style="margin-top: 10px">
+        <div class="panel-heading">
+            <h3 class="panel-title">详情</h3>
+        </div>
+        <table class="layui-table" id="demo" lay-filter="test"></table>
+    </div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+$(function () {
+    // 页面框架加载完成之后代码自动执行
+    initLine();
+})
+
+function getUrlParam(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return encodeURI(r[2]); return null;
+}
+
+
+/**
+ * 初始化折线图
+ */
+function initLine() {
+    var myChart = echarts.init(document.getElementById('chart1'));
+    var query_type = getUrlParam('query_type')
+    var query_year = getUrlParam('query_year')
+    var query_month = getUrlParam('query_month')
+    var query_day = getUrlParam('query_day')
+    var option = {
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: []
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: []
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel:{
+                formatter:'{value}%'
+            }
+        },
+        series: []
+    };
+
+    $.ajax({
+        url: '/users/line/',
+        type: "get",
+        data: {
+            'query_type': query_type,
+            'query_year': query_year,
+            'query_month': query_month,
+            'query_day': query_day,
+        },
+        dataType: "JSON",
+        success: function (res) {
+            if (res.status) {
+                option.legend.data = res.data.legend;
+                option.xAxis.data = res.data.x_axis;
+                option.series = res.data.series_list;
+                myChart.setOption(option);
+            }
+        }
+    })
+}
+
+
+layui.use(function(){
+    // 得到需要的内置组件
+    var table = layui.table; //表格
+    var query_type = getUrlParam('query_type')
+    var query_year = getUrlParam('query_year')
+    var query_month = getUrlParam('query_month')
+    var query_day = getUrlParam('query_day')
+
+    var url = "/users/table/?query_type=" + query_type + "&query_year=" + query_year + "&query_month=" + query_month + "&query_day=" + query_day
+    // 执行一个 table 实例
+    table.render({
+        elem: '#demo'
+        ,url: url //数据接口（此处为静态数据，仅作演示）
+        ,title: '价格列表'
+        ,limit: 15
+        ,cols: [[ //表头
+            {field: 'date', title: '日期', sort: true, fixed: 'left'}
+            ,{field: 'data1', title: '进入小程序用户人数', sort: true, width:175}
+            ,{field: 'data2', title: '编制视频用户人数', sort: true}
+            ,{field: 'data3', title: '付款下载用户人数', sort: true}
+            ,{field: 'data4', title: '生成视频数量', sort: true, width:130}
+            ,{field: 'rate1', title: '用户活跃率（%）', sort: true}
+            ,{field: 'rate2', title: '用户下载率（%）', sort: true}
+        ]]
+    });
+});
+
+</script>
+{% endblock %}
