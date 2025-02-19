@@ -1,0 +1,14 @@
+
+
+celery worker -B -A listen1 --loglevel=info --pool=solo --concurrency=10
+
+
+redis-server redis.conf
+ps -ef | grep redis
+
+
+watch -n 1 netstat -tunlp
+
+
+uwsgi --stop uwsgi.pid
+uwsgi --ini uwsgi.ini
