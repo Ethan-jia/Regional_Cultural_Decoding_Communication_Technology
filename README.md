@@ -20,7 +20,7 @@ This project is a **Major Special Science and Technology Innovation Project 2025
 
 ### 1. Aggregation and Processing of Multi-source Heterogeneous Cultural Gene Resources
 
-[Research Content Structure Chart](media/Research Content Structure Chart.png)
+![Research Content Structure Chart](media/1.png)
 
 - **Research on Aggregation Methods for Multi-cultural Content**：
   
@@ -46,4 +46,5 @@ Precise push mostly refers to new media placing news, videos, products, etc., th
 
 The research of this project requires the support of multiple key technologies, mainly including heterogeneous multi-source cultural gene resource aggregation and information visualization technology, cultural gene resource content verification and security service technology (blockchain), large-scale audio-visual resource digital conversion and cataloging technology, and precise push service technology for thematic works based on deep learning. These technologies provide efficient and secure support for urban cultural gene decoding and precise push services, promoting their development towards digitization, intelligence, and networking. The specific technical route is shown in the figure below:
 
-[technology roadmap](media/technology roadmap.png)
+![technology roadmap](media/2.png)
+
